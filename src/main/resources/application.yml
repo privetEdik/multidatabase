@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: app
+
+app:
+  data-sources:
+    - name: users-db
+      url: jdbc:postgresql://localhost:5433/users
+      user: user1
+      password: pass1
+      table: users
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name
+
+    - name: auth-db
+      url: jdbc:postgresql://localhost:5434/auth
+      user: user2
+      password: pass2
+      table: employees
+      mapping:
+        id: emp_id
+        username: uname
+        name: fname
+        surname: lname
+
+    - name: mysql-db
+      url: jdbc:mysql://localhost:3306/employees
+      user: user3
+      password: pass3
+      table: staff
+      mapping:
+        id: id
+        username: login
+        name: first_name
+        surname: last_name
+
+    - name: oracle-db
+      url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+      user: user4
+      password: pass4
+      table: workers
+      mapping:
+        id: WORKER_ID
+        username: LOGIN
+        name: FIRST_NAME
+        surname: LAST_NAME
+
+logging:
+  level:
+    org.springframework.jdbc.core.JdbcTemplate: DEBUG
+    org.springframework.jdbc.datasource: DEBUG
+
+
+
+

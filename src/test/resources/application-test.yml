@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: app
+
+app:
+  data-sources:
+    - name: users-db
+      url:
+      user: user1
+      password: pass1
+      table: users
+      mapping:
+        id: user_id
+        username: login
+        name: first_name
+        surname: last_name
+    - name: mysql-db
+      url:
+      user:
+      password:
+      table: staff
+      mapping:
+        id: id
+        username: login
+        name: first_name
+        surname: last_name
+    - name: oracle-db
+      url:
+      user: test
+      password: test
+      table: workers
+      mapping:
+        id: WORKER_ID
+        username: LOGIN
+        name: FIRST_NAME
+        surname: LAST_NAME

@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: User API
+  version: 1.0.0
+  description: API for retrieving users from multiple databases.
+
+paths:
+  /users:
+    get:
+      tags:
+        - users
+      operationId: getUsers
+      summary: Get all users
+      description: Returns a list of users, optionally filtered by first name, last name, or login.
+      parameters:
+        - in: query
+          name: firstName
+          schema:
+            type: string
+          required: false
+          description: Filter by first name
+        - in: query
+          name: lastName
+          schema:
+            type: string
+          required: false
+          description: Filter by last name
+        - in: query
+          name: login
+          schema:
+            type: string
+          required: false
+          description: Filter by login
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserResponse'
+
+components:
+  schemas:
+    UserResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the user
+        username:
+          type: string
+          description: User login or username
+        name:
+          type: string
+          description: First name of the user
+        surname:
+          type: string
+          description: Last name of the user

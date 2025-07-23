@@ -1,0 +1,60 @@
+version: '3.9'
+services:
+  users-db:
+    container_name: users-db
+    image: postgres:15
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_USER: user1
+      POSTGRES_PASSWORD: pass1
+    ports:
+      - "5433:5432"
+    networks:
+      - internal
+    volumes:
+      - ./init/users-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  auth-db:
+    container_name: auth-db
+    image: postgres:15
+    environment:
+      POSTGRES_DB: auth
+      POSTGRES_USER: user2
+      POSTGRES_PASSWORD: pass2
+    ports:
+      - "5434:5432"
+    networks:
+      - internal
+    volumes:
+      - ./init/auth-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  mysql-db:
+    container_name: mysql-db
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: employees
+      MYSQL_USER: user3
+      MYSQL_PASSWORD: pass3
+    ports:
+      - "3306:3306"
+    networks:
+      - internal
+    volumes:
+      - ./init/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  oracle-db:
+    container_name: oracle-db
+    image: gvenzl/oracle-xe:21-slim
+    environment:
+      ORACLE_PASSWORD: pass4
+      APP_USER: user4
+      APP_USER_PASSWORD: pass4
+    ports:
+      - "1521:1521"
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
