@@ -1,5 +1,6 @@
 package org.example.multidatabase.integration;
 
+import org.example.generated.model.UserResponse;
 import org.example.multidatabase.config.AppDataSourcesConfig;
 import org.example.multidatabase.config.DynamicDataSourceFactory;
 import org.example.multidatabase.dto.UserDto;
@@ -37,26 +38,26 @@ public class MultiDatabaseApplicationTests extends BaseIntegrationTest {
 
     @Test
     void shouldReturnAllUsersWhenNoFilters() {
-        List<UserDto> users = userAggregatorService.getAllUsers(null, null, null);
+        List<UserResponse> users = userAggregatorService.getAllUsers(null, null, null);
         assertThat(users)
                 .hasSize(3)
-                .extracting(UserDto::username)
+                .extracting(UserResponse::getUsername)
                 .containsExactlyInAnyOrder("users-db_login", "mysql-db_login", "oracle-db_login");
     }
 
     @Test
     void shouldFilterByLoginContainingL() {
-        List<UserDto> users = userAggregatorService.getAllUsers(null, null, "r");
+        List<UserResponse> users = userAggregatorService.getAllUsers(null, null, "r");
         assertThat(users)
                 .hasSize(2)
-                .extracting(UserDto::username)
+                .extracting(UserResponse::getUsername)
                 .containsExactlyInAnyOrder("users-db_login", "oracle-db_login");
     }
 
     @Test
     void shouldFilterByExactLogin() {
-        List<UserDto> users = userAggregatorService.getAllUsers(null, null, "oracle-db_login");
+        List<UserResponse> users = userAggregatorService.getAllUsers(null, null, "oracle-db_login");
         assertThat(users).hasSize(1);
-        assertThat(users.getFirst().username()).isEqualTo("oracle-db_login");
+        assertThat(users.getFirst().getUsername()).isEqualTo("oracle-db_login");
     }
 }

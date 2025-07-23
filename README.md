@@ -1,15 +1,15 @@
-# 📦 MultiDatabase
+# MultiDatabase
 
 **MultiDatabase** is a REST API service that aggregates users from multiple relational databases (PostgreSQL, MySQL, Oracle), supports filtering by parameters, and performs asynchronous aggregation.
 
 ---
 
-## 🐳 How to Run the Project
+## How to Run the Project
 
 1. Clone the repository:
 2. Open project in Intallij IDE
-3. Open terminal in IDE. you must be in the root folder of the project
-4. Run the following command.It will launch four containers: two PostgreSQL, one MySQL, one Oracle. Wait for the images to load and the containers to start
+3. Open terminal in IDE. You must be in the root folder of the project
+4. Run the following command. It will launch four containers: two PostgreSQL, one MySQL, one Oracle. Wait for the images to load and the containers to start
    ```bash
    docker compose up -d
 
@@ -40,7 +40,7 @@
    response - 2 objects;
 
 
-## 🐳 How to Run the Tests
+## How to Run the Tests
 
 1. I recommend stopping the dev version and deleting containers to save resources before running tests (you can skip this). Run in the terminal:
       ```bash
